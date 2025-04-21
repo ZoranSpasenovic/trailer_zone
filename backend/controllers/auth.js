@@ -1,5 +1,6 @@
 const bcrypt = require("bcryptjs");
 const User = require("../models/user");
+const generateToken = require("../utils/generateToken");
 
 const signUp = async (req, res) => {
   try {
@@ -37,8 +38,18 @@ const signUp = async (req, res) => {
       password: hashedPassword,
       image,
     });
+
     await newUser.save();
-    res.status(201).json({ message: "User has been succesfuly created!" });
+    if (newUser) {
+      generateToken(newUser._id, res);
+    }
+    return res.status(201).json({
+      message: "User has been succesfuly created!",
+      user: {
+        ...newUser._doc,
+        password: "",
+      },
+    });
   } catch (err) {
     res.status(400).json({ message: "Error registering account : " + err });
   }
@@ -55,13 +66,31 @@ const login = async (req, res) => {
     if (!isCorrectPassword) {
       return res.status(400).json({ message: "Password is not correct" });
     }
-    return res.status(201).json({ message: "Login is succesful!" });
+    generateToken(user._id, res);
+    return res.status(201).json({
+      user: {
+        ...user._doc,
+        password: "",
+      },
+    });
   } catch (err) {
-    res.status(400).json({ message: "Error loging in " + err });
+    return res.status(400).json({ message: "Error loging in " + err });
   }
 };
 
-const logout = (req, res) => {};
+const logout = async (req, res) => {
+  try {
+    res.clearCookie("jwt-netflix", {
+      httpOnly: true,
+      secure: process.env.NODE_ENV !== "development",
+      sameSite: "strict",
+    });
+  } catch (err) {
+    console.log("Error occured while signing out: " + err);
+    return res.status(401).json({ message: err });
+  }
+  return res.status(200).json({ message: "LOGOUT" });
+};
 
 module.exports = {
   signUp,
