@@ -4,12 +4,14 @@ const app = express();
 const connectDb = require("./config/db");
 
 const authRoutes = require("./routes/authRoutes");
+const movieRoutes = require("./routes/movieRoutes");
 
 dotenv.config();
 
 app.use(express.json());
 
 app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/movie", movieRoutes);
 
 app.get("/", (req, res) => {
   res.send("SERVER IS RUNNING");
