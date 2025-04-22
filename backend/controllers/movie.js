@@ -5,7 +5,8 @@ const getTrendingMovie = async (req, res) => {
     const { results } = await fetchTMDB(
       "https://api.themoviedb.org/3/trending/movie/day?language=en-US"
     );
-    return res.status(200).json(results);
+    const randomMovie = results[Math.floor(Math.random() * results?.length)];
+    return res.status(200).json(randomMovie);
   } catch (err) {
     console.log(err);
     return res.status(500).json({ message: "internal Server Error " + err });
