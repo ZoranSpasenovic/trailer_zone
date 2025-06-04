@@ -6,7 +6,7 @@ const cookieParser = require("cookie-parser");
 const connectDb = require("./config/db");
 
 const app = express();
-app.use(cors());
+app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 
 const authRoutes = require("./routes/authRoutes");
 const movieRoutes = require("./routes/movieRoutes");
