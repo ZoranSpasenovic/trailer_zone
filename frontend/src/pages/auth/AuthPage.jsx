@@ -2,12 +2,23 @@ import { useState, useEffect } from "react";
 import { Loader } from "lucide-react";
 import LoginForm from "./LoginForm";
 import SignUpForm from "./SignUpForm";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate, Navigate } from "react-router-dom";
+import useAuthCheck from "../../hooks/useAuthCheck";
 
 const AuthPage = () => {
   const [bgImg, setBgImg] = useState();
   const [loading, setLoading] = useState(true);
   const [searchParams] = useSearchParams();
+
+  const navigate = useNavigate();
+
+  const { user, isCheckingAuth } = useAuthCheck();
+
+  useEffect(() => {
+    if (!isCheckingAuth && user) {
+      navigate("/");
+    }
+  }, [user, isCheckingAuth, navigate]);
 
   const formType = searchParams.get("form") || "signup";
 

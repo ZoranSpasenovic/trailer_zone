@@ -96,8 +96,17 @@ const logout = async (req, res) => {
   return res.status(200).json({ message: "LOGOUT" });
 };
 
+const authCheck = async (req, res) => {
+  try {
+    res.status(200).json({ user: req.user, success: true });
+  } catch (err) {
+    res.status(500).json({ message: "intenral server error" });
+  }
+};
+
 module.exports = {
   signUp,
   login,
   logout,
+  authCheck,
 };

@@ -1,14 +1,18 @@
-// import { useEffect, useState } from "react";
+import { useEffect } from "react";
+
+import { useNavigate } from "react-router-dom";
+import useAuthCheck from "../../hooks/useAuthCheck";
 
 const HomePage = () => {
-  //   const [bgImg, setBgImg] = useState();
-  //   useEffect(() => {
-  //     fetch("http://localhost:5050/api/v1/movie/trending")
-  //       .then((res) => {
-  //         return res.json()
-  //       })
-  //       .then((res) => console.log(res));
-  //   }, []);
+  const { user, isCheckingAuth } = useAuthCheck();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isCheckingAuth && !user) {
+      navigate("/auth?form=login");
+    }
+  }, [isCheckingAuth, user, navigate]);
+
   return <div className="hero-bg h-screen">HomePage</div>;
 };
 
