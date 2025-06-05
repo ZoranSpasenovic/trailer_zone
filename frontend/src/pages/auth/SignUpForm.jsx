@@ -1,41 +1,23 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useAuthStore } from "../../store/authUser";
+import { Loader } from "lucide-react";
 
 const SignUpForm = () => {
-  const [error, setError] = useState(null);
+  const store = useAuthStore();
+
+  const { signUp, loading } = store;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
-    if (data.password !== data.confirm_password) {
-      setError("Passwords do not match");
-      return;
-    }
-
-    try {
-      const response = await fetch("http://localhost:5050/api/v1/auth/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-        credentials: "include",
-      });
-      const res = await response.json();
-
-      if (!response.ok) throw new Error(res.message);
-      e.target.reset();
-      setError(null);
-    } catch (err) {
-      setError(err.message);
-    }
+    await signUp(data);
   };
 
   return (
-    <div className="max-w-md w-full p-8 rounded-lg space-y-6 bg-[#330066]/60 mt-32  ">
+    <div className="max-w-md w-full p-8 rounded-lg space-y-6 bg-[#330066]/60 mt-16  ">
       <h1 className="text-[#FFD700] text-2xl">Register</h1>
-      <form onSubmit={handleSubmit}>
+      <form className="space-y-6" onSubmit={handleSubmit}>
         <div className="w-full bg-[#7932ac]/60 relative rounded-md">
           <label
             className="text-[#FFD700] absolute top-1 left-4"
@@ -49,10 +31,23 @@ const SignUpForm = () => {
             type="email"
           />
         </div>
-        <div className="w-full bg-[#7932ac]/60 relative rounded-md mt-8">
+        <div className="w-full bg-[#7932ac]/60 relative rounded-md ">
           <label
             className="text-[#FFD700] absolute top-1 left-4"
-            htmlFor="email"
+            htmlFor="username"
+          >
+            Username
+          </label>
+          <input
+            name="username"
+            className="w-full text-[#FFD700] h-full p-4 pt-8"
+            type="text"
+          />
+        </div>
+        <div className="w-full bg-[#7932ac]/60 relative rounded-md ">
+          <label
+            className="text-[#FFD700] absolute top-1 left-4"
+            htmlFor="password"
           >
             Password
           </label>
@@ -62,10 +57,10 @@ const SignUpForm = () => {
             name="password"
           />
         </div>
-        <div className="w-full bg-[#7932ac]/60 relative rounded-md mt-8">
+        <div className="w-full bg-[#7932ac]/60 relative rounded-md ">
           <label
             className="text-[#FFD700] absolute top-1 left-4"
-            htmlFor="email"
+            htmlFor="confirm_password"
           >
             Confirm Password
           </label>
@@ -75,12 +70,13 @@ const SignUpForm = () => {
             name="confirm_password"
           />
         </div>
-        {error && <p className="text-red-400 mt-2">{error}</p>}
+
         <button
           className="bg-[#FFD700] z-10 opacity-100 text-2xl text-[#7932ac] py-2 px-4 w-full mt-8 rounded-md hover:cursor-pointer hover:bg-[#FF8C00]"
           type="submit"
         >
           Sign up
+          {loading && <Loader className="animate-spin w-6 h-6" />}
         </button>
       </form>
       <div className="w-full text-[#FFD700]">
