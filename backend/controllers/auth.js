@@ -4,11 +4,15 @@ const generateToken = require("../utils/generateToken");
 
 const signUp = async (req, res) => {
   try {
-    const { email, password, username } = req.body;
+    const { email, password, username, confirm_password } = req.body;
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return res.status(400).json({ message: "Email is not valid!" });
+    }
+
+    if (confirm_password !== password) {
+      return res.status(400).json({ message: "Passwords do not match" });
     }
 
     const existingUser = await User.findOne({ email });
@@ -91,8 +95,6 @@ const logout = async (req, res) => {
   }
   return res.status(200).json({ message: "LOGOUT" });
 };
-
-
 
 module.exports = {
   signUp,

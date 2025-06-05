@@ -1,30 +1,14 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useAuthStore } from "../../store/authUser";
+import { Loader } from "lucide-react";
 
 const LoginForm = () => {
-  const [error, setError] = useState(null);
-
+  const { login, loading } = useAuthStore();
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
-    try {
-      const response = await fetch("http://localhost:5050/api/v1/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-        credentials: "include",
-      });
-      const res = await response.json();
-      if (!response.ok) throw new Error(res.message);
-
-      e.target.reset();
-      setError(null);
-    } catch (err) {
-      setError(err.message);
-    }
+    await login(data);
   };
 
   return (
@@ -57,12 +41,13 @@ const LoginForm = () => {
             name="password"
           />
         </div>
-        {error && <p className="text-red-400 mt-2 ">{error}</p>}
+
         <button
           className="bg-[#FFD700] z-10 opacity-100 text-2xl text-[#7932ac] py-2 px-4 w-full mt-8 rounded-md hover:cursor-pointer hover:bg-[#FF8C00]"
           type="submit"
         >
           Login
+          {loading && <Loader className="w-6 h-6 animate-spin" />}
         </button>
       </form>
       <div className="w-full text-[#FFD700]">

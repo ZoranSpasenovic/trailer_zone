@@ -38,7 +38,11 @@ const AuthPage = () => {
     >
       <header></header>
       <div className="flex justify-center items-center ">
-        {loading ? <Loader /> : content}
+        {loading ? (
+          <Loader className="w-6 h-6 mt-[50%] animate-spin" />
+        ) : (
+          content
+        )}
       </div>
     </div>
   );
