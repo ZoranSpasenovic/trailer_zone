@@ -1,5 +1,8 @@
 const express = require("express");
+const protectRoute = require("../middleware/protectRoute");
+
 const router = express.Router();
+
 const {
   getTrendingMovie,
   getMovieList,
@@ -10,12 +13,12 @@ const {
 
 router.get("/trending", getTrendingMovie);
 
-router.get("/:ctg", getMovieList);
+router.get("/:ctg", protectRoute, getMovieList);
 
-router.get("/:id/trailers", getMovieTrailers);
+router.get("/:id/trailers", protectRoute, getMovieTrailers);
 
-router.get("/:id/details", getMovieDetails);
+router.get("/:id/details", protectRoute, getMovieDetails);
 
-router.get("/:id/similar", getSimilarMovies);
+router.get("/:id/similar", protectRoute, getSimilarMovies);
 
 module.exports = router;

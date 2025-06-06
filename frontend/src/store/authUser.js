@@ -62,7 +62,7 @@ export const useAuthStore = create((set) => ({
       console.log(response);
     } catch (err) {
       set({ isCheckingAuth: false });
-      toast.error(err.response.data.message);
+      console.log(err);
     }
   },
 }));

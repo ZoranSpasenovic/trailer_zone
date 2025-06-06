@@ -1,5 +1,8 @@
 const express = require("express");
+const protectRoute = require("../middleware/protectRoute");
+
 const router = express.Router();
+
 const {
   getSeriesDetails,
   getSeriesList,
@@ -8,14 +11,14 @@ const {
   getTrendingSeries,
 } = require("../controllers/series");
 
-router.get("/trending", getTrendingSeries);
+router.get("/trending", protectRoute, getTrendingSeries);
 
-router.get("/:ctg", getSeriesList);
+router.get("/:ctg", protectRoute, getSeriesList);
 
-router.get("/:id/trailers", getSeriesTrailers);
+router.get("/:id/trailers", protectRoute, getSeriesTrailers);
 
-router.get("/:id/details", getSeriesDetails);
+router.get("/:id/details", protectRoute, getSeriesDetails);
 
-router.get("/:id/similar", getSimilarSeries);
+router.get("/:id/similar", protectRoute, getSimilarSeries);
 
 module.exports = router;

@@ -1,5 +1,8 @@
 const express = require("express");
+const protectRoute = require("../middleware/protectRoute");
+
 const router = express.Router();
+
 const {
   getPersonSearch,
   getMovieSearch,
@@ -8,14 +11,14 @@ const {
   deleteSearchHistory,
 } = require("../controllers/search");
 
-router.get("/person", getPersonSearch);
+router.get("/person", protectRoute, getPersonSearch);
 
-router.get("/movie", getMovieSearch);
+router.get("/movie", protectRoute, getMovieSearch);
 
-router.get("/series", getSeriesSearch);
+router.get("/series", protectRoute, getSeriesSearch);
 
-router.get("/history", getSearchHistory);
+router.get("/history", protectRoute, getSearchHistory);
 
-router.delete("/history/:id", deleteSearchHistory);
+router.delete("/history/:id", protectRoute, deleteSearchHistory);
 
 module.exports = router;

@@ -75,8 +75,11 @@ const SignUpForm = () => {
           className="bg-[#FFD700] z-10 opacity-100 text-2xl text-[#7932ac] py-2 px-4 w-full mt-8 rounded-md hover:cursor-pointer hover:bg-[#FF8C00]"
           type="submit"
         >
-          Sign up
-          {loading && <Loader className="animate-spin w-6 h-6" />}
+          {loading ? (
+            <Loader className="animate-spin w-6 h-6 mx-auto" />
+          ) : (
+            "Sign up"
+          )}
         </button>
       </form>
       <div className="w-full text-[#FFD700]">

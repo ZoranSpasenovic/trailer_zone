@@ -46,13 +46,16 @@ const LoginForm = () => {
           className="bg-[#FFD700] z-10 opacity-100 text-2xl text-[#7932ac] py-2 px-4 w-full mt-8 rounded-md hover:cursor-pointer hover:bg-[#FF8C00]"
           type="submit"
         >
-          Login
-          {loading && <Loader className="w-6 h-6 animate-spin" />}
+          {loading ? (
+            <Loader className="w-6 h-6 animate-spin mx-auto" />
+          ) : (
+            "Login"
+          )}
         </button>
       </form>
       <div className="w-full text-[#FFD700]">
         <p>
-          You don't have an account?{" "}
+          You don't have an account?
           <Link
             className="text-[#FF8C00] hover:underlßine"
             to="/auth?form=signup"
