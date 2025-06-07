@@ -4,6 +4,7 @@ import { Loader } from "lucide-react";
 import NavBar from "../components/NavBar";
 import { useNavigate } from "react-router-dom";
 import useAuthCheck from "../hooks/useAuthCheck";
+import Footer from "../components/Footer";
 
 const MainLayout = () => {
   const { user, isCheckingAuth } = useAuthCheck();
@@ -30,6 +31,7 @@ const MainLayout = () => {
       <main>
         <Outlet />
       </main>
+      <Footer />
     </>
   );
 };

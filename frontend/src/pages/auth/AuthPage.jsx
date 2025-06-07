@@ -1,17 +1,18 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { Loader } from "lucide-react";
 import LoginForm from "./LoginForm";
 import SignUpForm from "./SignUpForm";
 import { useSearchParams, useNavigate } from "react-router-dom";
-import { useAuthStore } from "../../store/authUser";
+import useAuthCheck from "../../hooks/useAuthCheck";
+import useRandomMovie from "../../hooks/useRandomMovie";
 
 const AuthPage = () => {
-  const [bgImg, setBgImg] = useState();
-  const [loading, setLoading] = useState(true);
   const [searchParams] = useSearchParams();
 
+  const { loading, randomMovie } = useRandomMovie();
+
   const navigate = useNavigate();
-  const { user, isCheckingAuth } = useAuthStore();
+  const { user, isCheckingAuth } = useAuthCheck();
 
   useEffect(() => {
     if (!isCheckingAuth && user) {
@@ -21,25 +22,20 @@ const AuthPage = () => {
 
   const formType = searchParams.get("form") || "signup";
 
-  useEffect(() => {
-    setLoading(true);
-    fetch("http://localhost:5050/api/v1/movie/trending", {
-      method: "GET",
-      credentials: "include",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setBgImg(data.backdrop_path);
-        setLoading(false);
-      });
-  }, []);
-
   const content = formType === "signup" ? <SignUpForm /> : <LoginForm />;
+
+  if (loading || !randomMovie) {
+    return (
+      <div className="flex justify-center items-center ">
+        <Loader className="w-6 h-6 mt-[50%] animate-spin" />
+      </div>
+    );
+  }
 
   return (
     <div
       style={{
-        backgroundImage: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(https://image.tmdb.org/t/p/original${bgImg})`,
+        backgroundImage: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(https://image.tmdb.org/t/p/original${randomMovie.backdrop_path})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",

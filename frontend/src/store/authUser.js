@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 export const useAuthStore = create((set) => ({
   user: null,
   loading: false,
-  isCheckingAuth: true,
+  isCheckingAuth: false,
   signUp: async (credentials) => {
     set({ loading: true });
     try {
@@ -30,7 +30,6 @@ export const useAuthStore = create((set) => ({
         credentials,
         { withCredentials: true }
       );
-      console.log(response);
 
       set({ user: response.data.user, loading: false });
     } catch (err) {
@@ -59,7 +58,6 @@ export const useAuthStore = create((set) => ({
         { withCredentials: true }
       );
       set({ isCheckingAuth: false, user: response.data.user });
-      console.log(response);
     } catch (err) {
       set({ isCheckingAuth: false });
       console.log(err);
