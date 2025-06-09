@@ -2,11 +2,13 @@ import { Link } from "react-router-dom";
 import { Menu, Search, LogOut } from "lucide-react";
 import { useState } from "react";
 import { useAuthStore } from "../store/authUser";
+import { useContentStore } from "../store/content";
 
 const NavBar = () => {
   const [menu, setMenu] = useState(false);
 
   const { logout, user } = useAuthStore();
+  const { setContentType } = useContentStore();
 
   const handleOpenMenu = () => {
     setMenu(!menu);
@@ -22,11 +24,23 @@ const NavBar = () => {
           <li className="hover:cursor-pointer hover:text-[#FF8C00]">
             <Link to="/">Home</Link>
           </li>
-          <li className="hover:cursor-pointer hover:text-[#FF8C00]">Movies</li>
-          <li className="hover:cursor-pointer hover:text-[#FF8C00]">Series</li>
-          <li className="hover:cursor-pointer hover:text-[#FF8C00]">
-            Trending Movies
+          <li
+            onClick={() => {
+              setContentType("movie");
+            }}
+            className="hover:cursor-pointer hover:text-[#FF8C00]"
+          >
+            Movies
           </li>
+          <li
+            onClick={() => {
+              setContentType("series");
+            }}
+            className="hover:cursor-pointer hover:text-[#FF8C00]"
+          >
+            TV Series
+          </li>
+
           <li className="hover:cursor-pointer hover:text-[#FF8C00]">
             Search History
           </li>

@@ -4,12 +4,12 @@ import LoginForm from "./LoginForm";
 import SignUpForm from "./SignUpForm";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import useAuthCheck from "../../hooks/useAuthCheck";
-import useRandomMovie from "../../hooks/useRandomMovie";
+import useRandomContent from "../../hooks/useRandomContent";
 
 const AuthPage = () => {
   const [searchParams] = useSearchParams();
 
-  const { loading, randomMovie } = useRandomMovie();
+  const { loading, randomContent } = useRandomContent();
 
   const navigate = useNavigate();
   const { user, isCheckingAuth } = useAuthCheck();
@@ -24,7 +24,7 @@ const AuthPage = () => {
 
   const content = formType === "signup" ? <SignUpForm /> : <LoginForm />;
 
-  if (loading || !randomMovie) {
+  if (loading || !randomContent) {
     return (
       <div className="flex justify-center items-center ">
         <Loader className="w-6 h-6 mt-[50%] animate-spin" />
@@ -35,7 +35,7 @@ const AuthPage = () => {
   return (
     <div
       style={{
-        backgroundImage: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(https://image.tmdb.org/t/p/original${randomMovie.backdrop_path})`,
+        backgroundImage: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(https://image.tmdb.org/t/p/original${randomContent.backdrop_path})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",

@@ -41,9 +41,14 @@ export const useAuthStore = create((set) => ({
     set({ loading: true });
 
     try {
-      await axios.post("http://localhost:5050/api/v1/auth/logout", {
-        withCredentials: true,
-      });
+      await axios.post(
+        "http://localhost:5050/api/v1/auth/logout",
+        {},
+        {
+          withCredentials: true,
+        }
+      );
+
       set({ user: null, loading: false });
     } catch (err) {
       set({ loading: false });
