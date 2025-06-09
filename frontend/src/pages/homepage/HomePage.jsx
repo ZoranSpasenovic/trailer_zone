@@ -3,12 +3,14 @@ import { Play, CircleAlert } from "lucide-react";
 import useGenres from "../../hooks/useGenres";
 import { getYear } from "../../helpers/getYear";
 import { useState } from "react";
+import { useContentStore } from "../../store/content";
 
 const HomePage = () => {
   const { randomContent } = useRandomContent("movie");
+  const { contentType } = useContentStore();
   const [imgLoading, setImgLoading] = useState(true);
   const genreIds = randomContent?.genre_ids ?? [];
-  const genres = useGenres(genreIds);
+  const genres = useGenres(genreIds, contentType);
 
   if (!randomContent)
     return (
@@ -43,8 +45,7 @@ const HomePage = () => {
           </h1>
           <span className="mt-2">
             {year} {""}| {""}
-            {randomContent.vote_average !== 0 &&
-              randomContent.vote_average.toFixed(1)}
+            {randomContent.adult ? "18+" : "PG-13"}
           </span>
           <div>
             <ul className="flex gap-2">
