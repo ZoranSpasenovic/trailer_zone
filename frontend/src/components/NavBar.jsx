@@ -1,11 +1,21 @@
 import { Link } from "react-router-dom";
 import { Menu, Search, LogOut } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAuthStore } from "../store/authUser";
 import { useContentStore } from "../store/content";
 
 const NavBar = () => {
   const [menu, setMenu] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 30);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const { logout, user } = useAuthStore();
   const { setContentType } = useContentStore();
@@ -15,7 +25,12 @@ const NavBar = () => {
   };
 
   return (
-    <header className="flex py-4 px-12 justify-between items-center w-full z-50  fixed text-[#FFD700]">
+    <header className="flex py-4 px-12 justify-between items-center w-full z-100 to-[#330022] fixed text-[#FFD700]">
+      <div
+        className={`-z-50 bg-gradient-to-b from-[#1a0011] via-[#1a0011] to-[#330022] ${
+          scrolled ? "opacity-100" : "opacity-0"
+        } transition-opacity duration-350 ease-in absolute w-full h-full top-0 left-0`}
+      />
       <div className="text-2xl hover:cursor-pointer">
         <Link to="/">TrailerZone</Link>
       </div>

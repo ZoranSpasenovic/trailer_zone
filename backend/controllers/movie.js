@@ -15,7 +15,7 @@ const getTrendingMovie = async (req, res) => {
 
 const getMovieList = async (req, res) => {
   const { ctg } = req.params;
-  const { page } = req.query;
+  const { page = 1 } = req.query;
   try {
     const { results } = await fetchTMDB(
       `https://api.themoviedb.org/3/movie/${ctg}?language=en-US&page=${page}`

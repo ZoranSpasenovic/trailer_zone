@@ -4,6 +4,8 @@ import useGenres from "../../hooks/useGenres";
 import { getYear } from "../../helpers/getYear";
 import { useState } from "react";
 import { useContentStore } from "../../store/content";
+import { movieCtg, seriesCtg } from "../../constants/cattegories";
+import Content from "./Content";
 
 const HomePage = () => {
   const { randomContent } = useRandomContent("movie");
@@ -31,7 +33,6 @@ const HomePage = () => {
           className={`absolute top-0 right-0 md:w-full h-full object-cover transition-opacity duration-500 -z-50 ${
             imgLoading ? "opacity-0" : "opacity-100"
           }`}
-          // className="absolute top-0 right-0 md:w-full h-full object-cover  -z-50"
           src={`https://image.tmdb.org/t/p/original/${randomContent.backdrop_path}`}
           alt="Random movie image"
         />
@@ -64,6 +65,15 @@ const HomePage = () => {
             </button>
           </div>
         </div>
+      </div>
+      <div className="flex flex-col gap-4 py-8 bg-[#330022] text-[#FFD700] overflow-x-hidden">
+        {contentType === "movie"
+          ? movieCtg.map((ctg) => {
+              return <Content key={ctg} ctg={ctg} />;
+            })
+          : seriesCtg.map((ctg) => {
+              return <Content key={ctg} ctg={ctg} />;
+            })}
       </div>
     </>
   );
