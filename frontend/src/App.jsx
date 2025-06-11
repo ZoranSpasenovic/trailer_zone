@@ -3,6 +3,7 @@ import RootLayout from "./layout/RootLayout";
 import MainLayout from "./layout/MainLayout";
 import HomePage from "./pages/homepage/HomePage";
 import AuthPage from "./pages/auth/AuthPage";
+import WatchPage from "./pages/watch/WatchPage";
 import { Toaster } from "react-hot-toast";
 
 const router = createBrowserRouter([
@@ -13,7 +14,10 @@ const router = createBrowserRouter([
       { element: <AuthPage />, path: "/auth" },
       {
         element: <MainLayout />,
-        children: [{ index: true, element: <HomePage /> }],
+        children: [
+          { index: true, element: <HomePage /> },
+          { path: "/watch/:id", element: <WatchPage /> },
+        ],
       },
     ],
   },

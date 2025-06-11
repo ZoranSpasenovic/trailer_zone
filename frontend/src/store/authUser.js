@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 export const useAuthStore = create((set) => ({
   user: null,
   loading: false,
-  isCheckingAuth: false,
+  isCheckingAuth: true,
   signUp: async (credentials) => {
     set({ loading: true });
     try {

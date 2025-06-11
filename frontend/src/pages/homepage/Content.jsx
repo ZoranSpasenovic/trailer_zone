@@ -3,7 +3,7 @@ import { useContentStore } from "../../store/content";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-const ContentSlider = ({ ctg }) => {
+const Content = ({ ctg }) => {
   const [content, setContent] = useState(null);
   const { contentType } = useContentStore();
 
@@ -50,13 +50,12 @@ const ContentSlider = ({ ctg }) => {
             <Link
               key={item.id}
               to={`/watch/${item.id}`}
-              className="min-w-[150px] sm:min-w-[250px] relative group transition-all ease-in duration-200 hover:scale-120 hover:z-50 "
+              className="min-w-[150px] sm:min-w-[250px] relative z-50 group transition-all ease-in duration-200 hover:scale-120 hover:z-51 "
             >
               <div className="rounded-lg ">
                 <img
                   src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`}
                   alt="content card image"
-                  // className="transition-all ease-in duration-200 hover:scale-120 hover:z-100"
                 />
               </div>
               <div>
@@ -70,4 +69,4 @@ const ContentSlider = ({ ctg }) => {
   );
 };
 
-export default ContentSlider;
+export default Content;
