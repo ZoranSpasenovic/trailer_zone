@@ -66,10 +66,24 @@ const getSimilarSeries = async (req, res) => {
   }
 };
 
+const getSeriesCast = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const data = await fetchTMDB(
+      `https://api.themoviedb.org/3/tv/${id}/credits`
+    );
+
+    return res.status(200).json(data.results);
+  } catch (err) {
+    return res.status(500).json({ message: "Internal Server Error: " + err });
+  }
+};
+
 module.exports = {
   getTrendingSeries,
   getSeriesDetails,
   getSeriesList,
   getSeriesTrailers,
   getSimilarSeries,
+  getSeriesCast,
 };

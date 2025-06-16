@@ -9,6 +9,7 @@ const {
   getMovieTrailers,
   getMovieDetails,
   getSimilarMovies,
+  getMovieCast,
 } = require("../controllers/movie");
 
 router.get("/trending", getTrendingMovie);
@@ -20,5 +21,7 @@ router.get("/:id/trailers", protectRoute, getMovieTrailers);
 router.get("/:id/details", protectRoute, getMovieDetails);
 
 router.get("/:id/similar", protectRoute, getSimilarMovies);
+
+router.get("/:id/credits", protectRoute, getMovieCast);
 
 module.exports = router;
