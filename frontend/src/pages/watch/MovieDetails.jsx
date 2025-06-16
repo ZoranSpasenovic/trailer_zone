@@ -6,8 +6,6 @@ const MovieDetails = ({ data }) => {
       return genre.name;
     }) ?? [];
 
-  console.log(data);
-
   const hrs = Math.floor(data.runtime / 60);
   const mins = data.runtime % 60;
   const runtime = `${hrs}h ${mins}min`;
@@ -18,12 +16,9 @@ const MovieDetails = ({ data }) => {
     : "Unknown";
 
   const renderStars = (rating) => {
-    console.log(rating);
     const fullStars = Math.floor(+rating / 2);
     const decimalPart = +rating / 2 - fullStars;
     const stars = [];
-
-    console.log(fullStars, decimalPart);
 
     for (let i = 0; i < 5; i++) {
       if (i < fullStars) {
@@ -51,7 +46,7 @@ const MovieDetails = ({ data }) => {
   };
 
   return (
-    <div className="flex flex-col px-8 gap-4 pt-25 justify-evenly items-center md:flex-row md:h-screen">
+    <div className="flex flex-col px-8 pb-16 gap-4 pt-25 justify-evenly items-center md:flex-row md:h-screen">
       <div className="rounded-lg overflow-hidden max-w-100 h-full flex-1">
         <img
           src={

@@ -42,7 +42,7 @@ const NavBar = () => {
             }}
             className="hover:cursor-pointer hover:text-[#FF8C00]"
           >
-            Movies
+            <Link to="/"> Movies</Link>
           </li>
           <li
             onClick={() => {
@@ -50,7 +50,7 @@ const NavBar = () => {
             }}
             className="hover:cursor-pointer hover:text-[#FF8C00]"
           >
-            TV Series
+            <Link to="/"> TV Series</Link>
           </li>
 
           <li className="hover:cursor-pointer hover:text-[#FF8C00]">
@@ -75,7 +75,7 @@ const NavBar = () => {
               <Link to="/movies">Movies</Link>
             </li>
             <li className="hover:bg-[#6A0DAD]/60 hover:cursor-pointer py-2 px-4">
-              <Link to="/profile">Series</Link>
+              <Link to="/profile">TV Series</Link>
             </li>
             <li className="hover:bg-[#6A0DAD]/60 hover:cursor-pointer py-2 px-4">
               <Link to="/profile">Account</Link>

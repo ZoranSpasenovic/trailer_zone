@@ -73,7 +73,7 @@ const getSeriesCast = async (req, res) => {
       `https://api.themoviedb.org/3/tv/${id}/credits`
     );
 
-    return res.status(200).json(data.results);
+    return res.status(200).json(data);
   } catch (err) {
     return res.status(500).json({ message: "Internal Server Error: " + err });
   }

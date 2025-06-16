@@ -3,15 +3,18 @@ import useContentTrailer from "../../hooks/useContentTrailer";
 import useSimilarContent from "../../hooks/useSimilarContent";
 import useContentDetails from "../../hooks/useContentDetails";
 import Trailer from "./Trailer";
-import Slider from "./Slider";
+import SimilarContent from "./SimilarContent";
 import MovieDetails from "./MovieDetails";
 import { useEffect } from "react";
+import useContentCredits from "../../hooks/useContentCredits";
+import Cast from "./Cast";
 
 const WatchPage = () => {
   const { id } = useParams();
   const trailers = useContentTrailer(id);
   const similarContent = useSimilarContent(id);
   const contentDetails = useContentDetails(id);
+  const contentCredits = useContentCredits(id);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -26,8 +29,9 @@ const WatchPage = () => {
     <>
       <div className="bg-[#330022] min-h-screen text-[#FFD700]">
         <MovieDetails data={contentDetails} />
+        <Cast cast={contentCredits} />
         <Trailer trailers={trailers} />
-        <Slider content={similarContent} />
+        <SimilarContent content={similarContent} />
       </div>
     </>
   );
