@@ -29,19 +29,17 @@ const Slider = ({ content }) => {
       onMouseLeave={() => {
         setShowArrows(false);
       }}
-      className="px-5 md:px-20 relative bg-[#1a0011]"
+      className="px-5 md:px-20 relative overflow-visible bg-[#1a0011]"
     >
       <h2 className="mb-4 text-2xl font-bold">Similar TV Shows/Movies</h2>
       <div
-        className="flex space-x-4 overflow-x-scroll scrollbar-hide"
+        className="flex space-x-4 overflow-x-scroll scrollbar-hide sm:py-14"
         ref={sliderRef}
       >
         {content.map((item) => (
           <Link
             to={`/watch/${item.id}`}
-            className=" min-w-[150px] sm:min-w-[250px] group
-            
-          "
+            className=" min-w-[150px] sm:min-w-[250px] hover:scale-125 transition-all duration-150 ease-in relative z-1 hover:z-2"
             key={item.id}
           >
             <div className="rounded-lg overflow-hidden">
@@ -52,7 +50,7 @@ const Slider = ({ content }) => {
                     : "/fallback2.webp"
                 }
                 alt="Movie image"
-                className="transition-transform duration-300 ease-in-out group-hover:scale-125"
+                className="transition-transform duration-300 ease-in-out"
               />
             </div>
             <p className="mt-2 text-center">{item.title || item.name}</p>

@@ -12,9 +12,9 @@ const Trailer = ({ trailers }) => {
     if (trailerIdx > 0) setTrailerIdx((prevState) => prevState - 1);
   };
   return (
-    <div className="mx-auto container px-4 py-8 h-full">
+    <div className="mx-auto container py-8 h-full">
       {trailers.length > 0 && (
-        <div className="flex gap-2 my-8 items-center justify-between">
+        <div className="flex gap-2 p-8 items-center justify-between">
           <button
             onClick={handlePrevTrailer}
             className={`bg-gray-500/70 hover:bg-gray-500 rounded absolute left-0 md:static text-white py-1 px-2 md:py-2 md:px-4 cursor-pointer ${
