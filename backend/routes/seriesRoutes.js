@@ -12,7 +12,7 @@ const {
   getSeriesCast,
 } = require("../controllers/series");
 
-router.get("/trending", protectRoute, getTrendingSeries);
+router.get("/trending", getTrendingSeries);
 
 router.get("/:ctg", protectRoute, getSeriesList);
 

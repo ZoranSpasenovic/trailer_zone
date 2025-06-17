@@ -84,7 +84,9 @@ const NavBar = () => {
         )}
       </nav>
       <div className="flex gap-4 items-center">
-        <Search className="size-6 cursor-pointer" />
+        <Link to="/search">
+          <Search className="size-6 cursor-pointer" />
+        </Link>
         {user && <img src={user?.image} alt="Avatar" className="h-8 rounded" />}
 
         <LogOut
