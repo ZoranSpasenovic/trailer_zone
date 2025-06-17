@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { Search } from "lucide-react";
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
@@ -53,7 +52,12 @@ const SearchPage = () => {
             Person
           </button>
         </div>
-        <form className="mt-4 w-lg space-x-2 flex items-center justify-center">
+        <form
+          onSubmit={(event) => {
+            event.preventDefault();
+          }}
+          className="mt-4 w-lg space-x-2 flex items-center justify-center"
+        >
           <input
             onChange={handleInputChange}
             className="border-[#FFD700] border-1 h-8 rounded-md flex-1 text-[#FFD700] px-2"
@@ -64,7 +68,7 @@ const SearchPage = () => {
           </button>
         </form>
       </div>
-      <SearchResults type={searchType} content={content} />
+      <SearchResults query={searchParams.get("query")} content={content} />
     </div>
   );
 };

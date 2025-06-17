@@ -1,9 +1,21 @@
 import { Link } from "react-router-dom";
+import SearchResultItem from "./SearchResultItem";
 
-const SearchResults = ({ content, type }) => {
+const SearchResults = ({ content, query }) => {
+  if (!query || query.length === 0) {
+    return (
+      <div className="bg-[#330022] text-[#FFD700] relative px-5 lg:px-20 ">
+        <h2 className="mt-8 text-2xl font-bold">
+          Looking for something? Start typing above.
+        </h2>
+      </div>
+    );
+  }
   return (
     <div className="bg-[#330022] text-[#FFD700] relative px-5 lg:px-20 ">
-      <h2 className="mb-2 text-2xl font-bold"></h2>
+      <h2 className="mt-8 pb-8 text-2xl font-bold">
+        Search results for: "{query}"
+      </h2>
       <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4  2xl:grid-cols-5 gap-4">
         {content.map((item) => {
           if (!item.profile_path && !item.poster_path) return null;
@@ -13,20 +25,7 @@ const SearchResults = ({ content, type }) => {
               to={`/watch/${item.id}`}
               className="min-w-[150px] sm:min-w-[250px] relative z-50 transition-all ease-in duration-200 hover:scale-120 hover:z-51 "
             >
-              <div className="rounded-lg ">
-                <img
-                  src={
-                    type === "person"
-                      ? `https://image.tmdb.org/t/p/original/${item.profile_path}`
-                      : `https://image.tmdb.org/t/p/w500/${item.poster_path}`
-                  }
-                  alt={item.title || item.name}
-                  className="w-full h-auto rounded-lg"
-                />
-              </div>
-              <div>
-                <p className="text-center">{item.title || item.name}</p>
-              </div>
+              <SearchResultItem item={item} />
             </Link>
           );
         })}
