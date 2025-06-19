@@ -2,6 +2,7 @@ import { Trash } from "lucide-react";
 import deleteSearchHistory from "../../utils/deleteSearchHistory";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const HistoryPage = () => {
   const [history, setHistory] = useState(null);
@@ -76,32 +77,37 @@ const HistoryPage = () => {
         </h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3  gap-4">
           {history?.map((entry, idx) => (
-            <div
-              key={idx}
-              className="bg-[#1a0011] p-4 rounded flex items-start"
-            >
-              <img
-                src={`https://image.tmdb.org/t/p/w500/${entry.image}`}
-                alt="History image"
-                className="size-16 rounded-full object-cover mr-4"
-              />
-              <div className="flex flex-col">
-                <span className="text-[#FFD700] text-lg">{entry.title}</span>
-                <span className="text-[#BFAF60] text-sm">
-                  {formatDate(entry.createdAt)}
-                </span>
-              </div>
+            <Link to={`/watch/${entry.id}`}>
+              <div
+                key={idx}
+                className="bg-[#1a0011] p-4 rounded flex items-start"
+              >
+                <img
+                  src={`https://image.tmdb.org/t/p/w500/${entry.image}`}
+                  alt="History image"
+                  className="size-16 rounded-full object-cover mr-4"
+                />
+                <div className="flex flex-col">
+                  <span className="text-[#FFD700] text-lg">{entry.title}</span>
+                  <span className="text-[#BFAF60] text-sm">
+                    {formatDate(entry.createdAt)}
+                  </span>
+                </div>
 
-              <span className="py-1 px-3 min-w-20 text-center rounded-full text-sm  ml-auto bg-[#FFD700]">
-                {entry.searchType[0].toUpperCase() + entry.searchType.slice(1)}
-              </span>
-              <Trash
-                onClick={() => {
-                  handleDelete(entry.id);
-                }}
-                className="size-5 ml-4 cursor-pointer text-[#FFD700] hover:fill-[#FFD700]"
-              />
-            </div>
+                <span className="py-1 px-3 min-w-20 text-center rounded-full text-sm  ml-auto bg-[#FFD700]">
+                  {entry.searchType[0].toUpperCase() +
+                    entry.searchType.slice(1)}
+                </span>
+                <Trash
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    handleDelete(entry.id);
+                  }}
+                  className="size-5 ml-4 cursor-pointer text-[#FFD700] hover:fill-[#FFD700]"
+                />
+              </div>
+            </Link>
           ))}
         </div>
       </div>
