@@ -54,7 +54,7 @@ const NavBar = () => {
           </li>
 
           <li className="hover:cursor-pointer hover:text-[#FF8C00]">
-            Search History
+            <Link to="/history"> Search History</Link>
           </li>
           <li
             onClick={async () => {

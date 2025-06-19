@@ -6,6 +6,7 @@ import AuthPage from "./pages/auth/AuthPage";
 import WatchPage from "./pages/watch/WatchPage";
 import { Toaster } from "react-hot-toast";
 import SearchPage from "./pages/search/SearchPage";
+import HistoryPage from "./pages/history/HistoryPage";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,7 @@ const router = createBrowserRouter([
           { index: true, element: <HomePage /> },
           { path: "/watch/:id", element: <WatchPage /> },
           { path: "/search", element: <SearchPage /> },
+          { path: "/history", element: <HistoryPage /> },
         ],
       },
     ],
