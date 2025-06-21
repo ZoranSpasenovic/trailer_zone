@@ -14,8 +14,6 @@ const {
 
 router.get("/trending", getTrendingSeries);
 
-router.get("/:ctg", protectRoute, getSeriesList);
-
 router.get("/:id/trailers", protectRoute, getSeriesTrailers);
 
 router.get("/:id/details", protectRoute, getSeriesDetails);
@@ -23,5 +21,6 @@ router.get("/:id/details", protectRoute, getSeriesDetails);
 router.get("/:id/similar", protectRoute, getSimilarSeries);
 
 router.get("/:id/credits", protectRoute, getSeriesCast);
+router.get("/:ctg", protectRoute, getSeriesList);
 
 module.exports = router;

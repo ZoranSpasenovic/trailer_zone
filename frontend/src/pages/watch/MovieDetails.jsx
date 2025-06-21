@@ -5,7 +5,7 @@ const MovieDetails = ({ data }) => {
     data?.genres?.map((genre) => {
       return genre.name;
     }) ?? [];
-  console.log(data);
+
   const hrs = Math.floor(data.runtime / 60);
   const mins = data.runtime % 60;
   const runtime = `${hrs}h ${mins}min`;

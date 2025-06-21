@@ -6,7 +6,6 @@ const deleteSearchHistory = async (id) => {
       `http://localhost:5050/api/v1/search/history/${id}`,
       { withCredentials: true }
     );
-    console.log(response);
   } catch (err) {
     console.log(err);
   }

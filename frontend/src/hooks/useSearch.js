@@ -16,7 +16,6 @@ const useSearch = (type) => {
     const delayFetch = setTimeout(() => {
       const fetchContent = async () => {
         try {
-          console.log(type);
           const response = await axios.get(
             `http://localhost:5050/api/v1/search/${type}?query=${encodeURIComponent(
               query

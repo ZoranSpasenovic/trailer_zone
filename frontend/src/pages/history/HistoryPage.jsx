@@ -68,7 +68,7 @@ const HistoryPage = () => {
       </div>
     );
   }
-  console.log(history);
+
   return (
     <div className="bg-[#330022] min-h-screen py-20">
       <div className="max-w-6xl mx-auto px-4 py-8">
