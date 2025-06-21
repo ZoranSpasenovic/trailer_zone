@@ -35,14 +35,19 @@ Built with a modern **MERN stack** and a beautiful responsive UI powered by **Ta
 ### 1. Clone the Repository
 
 git clone https://github.com/ZoranSpasenovic/trailer_zone.git
+
 cd trailer_zone
 
 ### 2. Setup .env file
 
 PORT=5050
+
 MONGO_URI=your_mongo_uri
+
 NODE_ENV=development
-JWT_SECRET=your_jwt_secre
+
+JWT_SECRET=your_jwt_secret
+
 TMDB_API_KEY=your_tmdb_api_key
 
 ### 3. Run this app locally
