@@ -18,7 +18,7 @@ const SearchPage = () => {
   const activeClass = "bg-[#FF8C00]";
 
   return (
-    <div className="bg-[#330022] min-h-screen py-20">
+    <div className="bg-[#330022] min-h-screen py-20 px-8">
       <div className="w-full flex flex-col items-center">
         <div className="flex space-x-4 text-[#330022]">
           <button
@@ -56,7 +56,7 @@ const SearchPage = () => {
           onSubmit={(event) => {
             event.preventDefault();
           }}
-          className="mt-4 w-lg space-x-2 flex items-center justify-center"
+          className="mt-8 w-full max-w-lg space-x-2 flex items-center justify-center"
         >
           <input
             onChange={handleInputChange}

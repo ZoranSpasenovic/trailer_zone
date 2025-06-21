@@ -1,5 +1,13 @@
 import { Link } from "react-router-dom";
-import { Menu, Search, LogOut } from "lucide-react";
+import {
+  Menu,
+  Search,
+  LogOut,
+  Github,
+  Linkedin,
+  Mail,
+  Globe,
+} from "lucide-react";
 import { useState, useEffect } from "react";
 import { useAuthStore } from "../store/authUser";
 import { useContentStore } from "../store/content";
@@ -17,12 +25,20 @@ const NavBar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (menu) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [menu]);
+
   const { logout, user } = useAuthStore();
   const { setContentType } = useContentStore();
-
-  const handleOpenMenu = () => {
-    setMenu(!menu);
-  };
 
   return (
     <header className="flex py-4 px-12 justify-between items-center w-full z-100 to-[#330022] fixed text-[#FFD700]">
@@ -67,20 +83,86 @@ const NavBar = () => {
         </ul>
 
         {menu && (
-          <ul className="flex flex-col bg-[#220055]/60 w-screen absolute top-14 right-0 z-50">
-            <li className="hover:bg-[#6A0DAD]/60 hover:cursor-pointer py-2 px-4">
-              <Link to="/">Home</Link>
-            </li>
-            <li className="hover:bg-[#6A0DAD]/60 hover:cursor-pointer py-2 px-4">
-              <Link to="/movies">Movies</Link>
-            </li>
-            <li className="hover:bg-[#6A0DAD]/60 hover:cursor-pointer py-2 px-4">
-              <Link to="/profile">TV Series</Link>
-            </li>
-            <li className="hover:bg-[#6A0DAD]/60 hover:cursor-pointer py-2 px-4">
-              <Link to="/profile">Account</Link>
-            </li>
-          </ul>
+          <div className="fixed bg-[#1a0011] top-0 left-0 w-screen h-screen z-50 flex flex-col justify-between">
+            <ul className="flex flex-col  ">
+              <li
+                onClick={() => {
+                  setMenu(false);
+                }}
+                className="hover:cursor-pointer py-4 px-4 text-3xl border-b border-[#330022] hover:bg-[#330022] transition-colors duration-150
+"
+              >
+                <Link to="/">Home</Link>
+              </li>
+              <li
+                onClick={() => {
+                  setContentType("movie");
+                  setMenu(false);
+                }}
+                className="hover:cursor-pointer py-4 px-4 text-3xl"
+              >
+                <Link to="/">Movies</Link>
+              </li>
+              <li
+                onClick={() => {
+                  setContentType("series");
+                  setMenu(false);
+                }}
+                className="hover:cursor-pointer py-4 px-4 text-3xl"
+              >
+                <Link to="/">TV Series</Link>
+              </li>
+              <li
+                onClick={() => {
+                  setMenu(false);
+                }}
+                className="hover:cursor-pointer py-4 px-4 text-3xl"
+              >
+                <Link to="/history">Search History</Link>
+              </li>
+              <li
+                onClick={async () => {
+                  await logout();
+                  setMenu(false);
+                }}
+                className="hover:cursor-pointer py-4 px-4 text-3xl"
+              >
+                <Link to="/auth">Log out</Link>
+              </li>
+            </ul>
+            <div className="flex justify-center gap-6 py-8 px-8 ">
+              <a
+                href="https://zoranspasenovic.github.io/portfolio/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[#FF8C00] transition-colors"
+              >
+                <Globe size={40} />
+              </a>
+              <a
+                href="https://github.com/ZoranSpasenovic"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[#FF8C00] transition-colors"
+              >
+                <Github size={40} />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/zoran-spasenovic-4b0428271/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[#FF8C00] transition-colors"
+              >
+                <Linkedin size={40} />
+              </a>
+              <a
+                href="mailto:spalespasenovic@gmail.com"
+                className="hover:text-[#FF8C00] transition-colors"
+              >
+                <Mail size={40} />
+              </a>
+            </div>
+          </div>
         )}
       </nav>
       <div className="flex gap-4 items-center">
@@ -98,7 +180,9 @@ const NavBar = () => {
 
         <button
           className="md:hidden w-6 h-6 block hover:cursor-pointer"
-          onClick={handleOpenMenu}
+          onClick={() => {
+            setMenu(!menu);
+          }}
         >
           <Menu />
         </button>

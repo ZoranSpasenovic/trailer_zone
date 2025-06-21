@@ -4,7 +4,7 @@ import SearchResultItem from "./SearchResultItem";
 const SearchResults = ({ content, query }) => {
   if (!query || query.length === 0) {
     return (
-      <div className="bg-[#330022] text-[#FFD700] relative px-5 lg:px-20 ">
+      <div className="bg-[#330022] text-[#FFD700] relative lg:px-20 ">
         <h2 className="mt-8 text-2xl font-bold">
           Looking for something? Start typing above.
         </h2>
@@ -12,7 +12,7 @@ const SearchResults = ({ content, query }) => {
     );
   }
   return (
-    <div className="bg-[#330022] text-[#FFD700] relative px-5 lg:px-20 ">
+    <div className="bg-[#330022] text-[#FFD700] relative lg:px-20 ">
       <h2 className="mt-8 pb-8 text-2xl font-bold">
         Search results for: "{query}"
       </h2>

@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useContentStore } from "../../store/content";
 import { movieCtg, seriesCtg } from "../../constants/cattegories";
 import Content from "./Content";
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
   const { randomContent } = useRandomContent("movie");
@@ -40,7 +41,7 @@ const HomePage = () => {
         <div className="bg-[#330022]/50 absolute w-full h-screen top-0 right-0 -z-50" />
 
         <div className="bg-gradient-to-b -z-50 from-[#330022] via-transparent to-transparent absolute w-full h-full top-0 left-0" />
-        <div className="absolute left-48 top-76 max-w-xl text-left text-[#FFD700]">
+        <div className="absolute text-center top-42 md:left-48 md:top-76 max-w-xl md:text-left text-[#FFD700]">
           <h1 className="text-5xl">
             {randomContent.title || randomContent.name}
           </h1>
@@ -49,20 +50,30 @@ const HomePage = () => {
             {randomContent.adult ? "18+" : "PG-13"}
           </span>
           <div>
-            <ul className="flex gap-2">
+            <ul className="flex gap-2 justify-center md:justify-start">
               {genres.map((genre) => {
                 return <li key={genre}>{genre}</li>;
               })}
             </ul>
           </div>
-          <p className="mt-4">{randomContent.overview}</p>
-          <div className="flex gap-2 mt-4 items-center">
-            <button className="flex gap-2 text-black bg-white/80 cursor-pointer px-4 py-2 rounded-md hover:bg-gray-400/70 transition-all duration-200">
+          <p className="mt-4">
+            {randomContent.overview.length > 200
+              ? randomContent.overview.slice(0, 200) + "..."
+              : randomContent.overview}
+          </p>
+          <div className="flex gap-2 mt-4 items-center justify-center md:justify-start">
+            <Link
+              to={`/watch/${randomContent.id}`}
+              className="flex gap-2 text-black bg-white/80 cursor-pointer px-4 py-2 rounded-md hover:bg-gray-400/70 transition-all duration-200"
+            >
               Play <Play className="text-black fill-current" />
-            </button>
-            <button className="flex gap-2  text-black bg-gray-400/70 cursor-pointer px-4 py-2 rounded-md hover:bg-white/80 transition-all duration-200">
+            </Link>
+            <Link
+              to={`/watch/${randomContent.id}`}
+              className="flex gap-2  text-black bg-gray-400/70 cursor-pointer px-4 py-2 rounded-md hover:bg-white/80 transition-all duration-200"
+            >
               More info <CircleAlert />
-            </button>
+            </Link>
           </div>
         </div>
       </div>

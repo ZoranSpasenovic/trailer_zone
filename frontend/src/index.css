@@ -1,10 +1,12 @@
 @import "tailwindcss";
 @import "tailwind-scrollbar-hide/v4";
 
-.hero-bg{
-  background-image: linear-gradient(rgba(0,0,0,0.6)) ,url("hero.png");
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  height: 100%;
 }
-
 input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 1000px #7932ac inset;
   -webkit-text-fill-color: #FFD700;

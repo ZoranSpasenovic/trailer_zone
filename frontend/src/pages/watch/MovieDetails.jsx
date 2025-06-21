@@ -5,7 +5,7 @@ const MovieDetails = ({ data }) => {
     data?.genres?.map((genre) => {
       return genre.name;
     }) ?? [];
-
+  console.log(data);
   const hrs = Math.floor(data.runtime / 60);
   const mins = data.runtime % 60;
   const runtime = `${hrs}h ${mins}min`;
@@ -13,6 +13,8 @@ const MovieDetails = ({ data }) => {
   const dateOptions = { year: "numeric", month: "long", day: "numeric" };
   const formattedDate = data?.release_date
     ? new Date(data.release_date).toLocaleDateString("en-US", dateOptions)
+    : data?.first_air_date
+    ? new Date(data.first_air_date).toLocaleDateString("en-US", dateOptions)
     : "Unknown";
 
   const renderStars = (rating) => {
@@ -78,9 +80,11 @@ const MovieDetails = ({ data }) => {
           </ul>
         )}
         <div className="text-sm md:w-full flex flex-wrap gap-x-2">
-          <span>{runtime}</span>
+          <span>
+            {data.runtime ? runtime : data.number_of_seasons + " seasons"}
+          </span>
           <span>·</span>
-          <span>{data.release_date && formattedDate}</span>
+          <span>{formattedDate}</span>
           <span>·</span>
           <span>{data.status}</span>
         </div>

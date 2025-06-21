@@ -2,7 +2,7 @@ import { Github, Linkedin, Mail, Globe } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#1a0011] text-[#FFD700] py-6 text-center">
+    <footer className="bg-[#1a0011] text-[#FFD700] py-6 text-center z-100">
       <p className="mb-4 text-lg">Made by Zoran Spasenović</p>
 
       <div className="flex justify-center gap-6">
