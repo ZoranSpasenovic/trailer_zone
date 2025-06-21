@@ -9,10 +9,9 @@ const useContentDetails = (id) => {
 
   useEffect(() => {
     const fetchContentDetails = async () => {
-      const response = await axios.get(
-        `http://localhost:5050/api/v1/${contentType}/${id}/details`,
-        { withCredentials: true }
-      );
+      const response = await axios.get(`/api/v1/${contentType}/${id}/details`, {
+        withCredentials: true,
+      });
 
       setContentDetails(response.data);
     };

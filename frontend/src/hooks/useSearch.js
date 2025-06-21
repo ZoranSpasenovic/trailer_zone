@@ -17,9 +17,7 @@ const useSearch = (type) => {
       const fetchContent = async () => {
         try {
           const response = await axios.get(
-            `http://localhost:5050/api/v1/search/${type}?query=${encodeURIComponent(
-              query
-            )}`,
+            `/api/v1/search/${type}?query=${encodeURIComponent(query)}`,
             { withCredentials: true }
           );
           setContent(response.data);

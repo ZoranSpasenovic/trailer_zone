@@ -8,10 +8,9 @@ const useSimilarContent = (id) => {
 
   useEffect(() => {
     const fetchSimilarContent = async () => {
-      const response = await axios.get(
-        `http://localhost:5050/api/v1/${contentType}/${id}/similar`,
-        { withCredentials: true }
-      );
+      const response = await axios.get(`/api/v1/${contentType}/${id}/similar`, {
+        withCredentials: true,
+      });
       setSimilarContent(response.data);
     };
 

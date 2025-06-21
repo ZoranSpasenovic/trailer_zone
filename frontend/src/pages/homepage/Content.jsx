@@ -10,12 +10,9 @@ const Content = ({ ctg }) => {
   useEffect(() => {
     const getContent = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:5050/api/v1/${contentType}/${ctg}`,
-          {
-            withCredentials: true,
-          }
-        );
+        const response = await axios.get(`/api/v1/${contentType}/${ctg}`, {
+          withCredentials: true,
+        });
 
         setContent(response.data);
       } catch (err) {

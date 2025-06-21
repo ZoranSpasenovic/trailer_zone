@@ -10,10 +10,9 @@ const HistoryPage = () => {
   useEffect(() => {
     const fetchSearchHistory = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:5050/api/v1/search/history",
-          { withCredentials: true }
-        );
+        const response = await axios.get("/api/v1/search/history", {
+          withCredentials: true,
+        });
 
         setHistory(response.data.content);
       } catch (err) {

@@ -9,11 +9,9 @@ export const useAuthStore = create((set) => ({
   signUp: async (credentials) => {
     set({ loading: true });
     try {
-      const response = await axios.post(
-        "http://localhost:5050/api/v1/auth/signup",
-        credentials,
-        { withCredentials: true }
-      );
+      const response = await axios.post("/api/v1/auth/signup", credentials, {
+        withCredentials: true,
+      });
 
       set({ user: response.data.user, loading: false });
     } catch (err) {
@@ -25,11 +23,9 @@ export const useAuthStore = create((set) => ({
   login: async (credentials) => {
     set({ loading: true });
     try {
-      const response = await axios.post(
-        "http://localhost:5050/api/v1/auth/login",
-        credentials,
-        { withCredentials: true }
-      );
+      const response = await axios.post("/api/v1/auth/login", credentials, {
+        withCredentials: true,
+      });
 
       set({ user: response.data.user, loading: false });
     } catch (err) {
@@ -42,7 +38,7 @@ export const useAuthStore = create((set) => ({
 
     try {
       await axios.post(
-        "http://localhost:5050/api/v1/auth/logout",
+        "/api/v1/auth/logout",
         {},
         {
           withCredentials: true,
@@ -58,10 +54,9 @@ export const useAuthStore = create((set) => ({
   authCheck: async () => {
     set({ isCheckingAuth: true });
     try {
-      const response = await axios.get(
-        "http://localhost:5050/api/v1/auth/authCheck",
-        { withCredentials: true }
-      );
+      const response = await axios.get("/api/v1/auth/authCheck", {
+        withCredentials: true,
+      });
       set({ isCheckingAuth: false, user: response.data.user });
     } catch (err) {
       set({ isCheckingAuth: false });

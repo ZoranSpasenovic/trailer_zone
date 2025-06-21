@@ -10,7 +10,7 @@ const useContentTrailer = (id) => {
     const fetchTrailers = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5050/api/v1/${contentType}/${id}/trailers`,
+          `/api/v1/${contentType}/${id}/trailers`,
           { withCredentials: true }
         );
         const filteredTrailers = response.data

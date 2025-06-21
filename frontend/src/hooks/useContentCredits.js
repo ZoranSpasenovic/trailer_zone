@@ -9,10 +9,9 @@ const useContentCredits = (id) => {
 
   useEffect(() => {
     const fetchContentCredits = async () => {
-      const response = await axios.get(
-        `http://localhost:5050/api/v1/${contentType}/${id}/credits`,
-        { withCredentials: true }
-      );
+      const response = await axios.get(`/api/v1/${contentType}/${id}/credits`, {
+        withCredentials: true,
+      });
 
       setContentCredits(response.data.cast);
     };
