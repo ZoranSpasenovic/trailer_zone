@@ -1,10 +1,14 @@
 import { Star, Link } from "lucide-react";
+import useGenres from "../../hooks/useGenres";
+import { useContentStore } from "../../store/content";
 
 const MovieDetails = ({ data }) => {
-  const genres =
+  const genresMap =
     data?.genres?.map((genre) => {
-      return genre.name;
+      return genre.id;
     }) ?? [];
+  const { contentType } = useContentStore();
+  const genres = useGenres(genresMap, contentType);
 
   const hrs = Math.floor(data.runtime / 60);
   const mins = data.runtime % 60;
@@ -68,10 +72,10 @@ const MovieDetails = ({ data }) => {
           </span>
         </div>
         {genres && (
-          <ul className="flex justify-start gap-4 md:w-full">
+          <ul className="flex flex-wrap justify-start gap-4 md:w-full">
             {genres.map((genre) => (
               <li
-                className="px-4 py-2 text-[#550044] bg-[#FFD700] font-bold border-1 rounded-md"
+                className="px-4 py-2 text-[#550044] bg-[#FFD700] min-w-[90px] text-center font-bold border-1 rounded-md"
                 key={genre}
               >
                 {genre}

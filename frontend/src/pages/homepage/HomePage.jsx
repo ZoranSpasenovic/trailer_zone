@@ -56,7 +56,7 @@ const HomePage = () => {
               })}
             </ul>
           </div>
-          <p className="mt-4">
+          <p className="mt-4 px-4 md:px-0">
             {randomContent.overview.length > 200
               ? randomContent.overview.slice(0, 200) + "..."
               : randomContent.overview}

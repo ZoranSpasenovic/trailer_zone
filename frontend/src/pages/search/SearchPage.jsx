@@ -3,10 +3,13 @@ import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import useSearch from "../../hooks/useSearch";
 import SearchResults from "./SearchResults";
+import { useContentStore } from "../../store/content";
 
 const SearchPage = () => {
   const [searchType, setSearchType] = useState("movie");
   const [searchParams, setSearchParams] = useSearchParams();
+
+  const { setContentType } = useContentStore();
 
   const handleInputChange = (e) => {
     const value = e.target.value;
@@ -24,6 +27,7 @@ const SearchPage = () => {
           <button
             onClick={() => {
               setSearchType("movie");
+              setContentType("movie");
             }}
             className={` py-2 px-4 rounded-md font-semibold cursor-pointer ${
               searchType === "movie" ? activeClass : "bg-[#FFD700]"
@@ -34,6 +38,7 @@ const SearchPage = () => {
           <button
             onClick={() => {
               setSearchType("series");
+              setContentType("series");
             }}
             className={` py-2 px-4 rounded-md font-semibold cursor-pointer ${
               searchType === "series" ? activeClass : "bg-[#FFD700]"

@@ -9,6 +9,7 @@ const useContentDetails = (id) => {
 
   useEffect(() => {
     const fetchContentDetails = async () => {
+      console.log(id, contentType);
       const response = await axios.get(`/api/v1/${contentType}/${id}/details`, {
         withCredentials: true,
       });

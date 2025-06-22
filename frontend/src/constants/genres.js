@@ -13,7 +13,7 @@ export const movieGenresMap = {
   10402: "Music",
   9648: "Mystery",
   10749: "Romance",
-  878: "Science Fiction",
+  878: "Sci-Fi",
   10770: "TV Movie",
   53: "Thriller",
   10752: "War",
@@ -21,7 +21,7 @@ export const movieGenresMap = {
 };
 
 export const seriesGenresMap = {
-  10759: "Action & Adventure",
+  10759: "Action",
   16: "Animation",
   35: "Comedy",
   80: "Crime",
@@ -32,9 +32,9 @@ export const seriesGenresMap = {
   9648: "Mystery",
   10763: "News",
   10764: "Reality",
-  10765: "Sci-Fi & Fantasy",
+  10765: "Sci-Fi",
   10766: "Soap",
   10767: "Talk",
-  10768: "War & Politics",
+  10768: "War",
   37: "Western",
 };

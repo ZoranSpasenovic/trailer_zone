@@ -170,13 +170,14 @@ const NavBar = () => {
           <Search className="size-6 cursor-pointer" />
         </Link>
         {user && <img src={user?.image} alt="Avatar" className="h-8 rounded" />}
-
-        <LogOut
-          onClick={async () => {
-            await logout();
-          }}
-          className="size-6 cursor-pointer"
-        />
+        <div>
+          <LogOut
+            onClick={async () => {
+              await logout();
+            }}
+            className="w-6 h-6 block  cursor-pointer"
+          />
+        </div>
 
         <button
           className="md:hidden w-6 h-6 block hover:cursor-pointer"
