@@ -10,9 +10,12 @@ const {
   getMovieDetails,
   getSimilarMovies,
   getMovieCast,
+  getMoviesByGenre,
 } = require("../controllers/movie");
 
 router.get("/trending", getTrendingMovie);
+
+router.get("/genre/:id", getMoviesByGenre);
 
 router.get("/:id/trailers", protectRoute, getMovieTrailers);
 

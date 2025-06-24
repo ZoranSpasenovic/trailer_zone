@@ -10,9 +10,12 @@ const {
   getSimilarSeries,
   getTrendingSeries,
   getSeriesCast,
+  getSeriesByGenre,
 } = require("../controllers/series");
 
 router.get("/trending", getTrendingSeries);
+
+router.get("/genre/:id", getSeriesByGenre);
 
 router.get("/:id/trailers", protectRoute, getSeriesTrailers);
 

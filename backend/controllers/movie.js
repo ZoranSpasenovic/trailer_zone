@@ -78,6 +78,19 @@ const getMovieCast = async (req, res) => {
   }
 };
 
+const getMoviesByGenre = async (req, res) => {
+  const { id } = req.params;
+  const { page = 1 } = req.query;
+  try {
+    const data = await fetchTMDB(
+      `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc&with_genres=${id}`
+    );
+    return res.status(200).json(data);
+  } catch (err) {
+    return res.status(500).json({ message: "Internal server error " + err });
+  }
+};
+
 module.exports = {
   getTrendingMovie,
   getMovieList,
@@ -85,4 +98,5 @@ module.exports = {
   getMovieDetails,
   getSimilarMovies,
   getMovieCast,
+  getMoviesByGenre,
 };
