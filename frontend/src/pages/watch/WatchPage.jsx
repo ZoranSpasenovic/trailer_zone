@@ -8,6 +8,7 @@ import MovieDetails from "./MovieDetails";
 import { useEffect } from "react";
 import useContentCredits from "../../hooks/useContentCredits";
 import Cast from "./Cast";
+import Shimmer from "../../components/Shimmer";
 
 const WatchPage = () => {
   const { id } = useParams();
@@ -19,11 +20,7 @@ const WatchPage = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [id]);
-  if (!trailers || !similarContent || !contentDetails) {
-    return (
-      <div className="absolute top-0 left-0 w-full h-full bg-black/70 flex items-center justify-center -z-10 shimmer" />
-    );
-  }
+  if (!trailers || !similarContent || !contentDetails) return <Shimmer />;
 
   return (
     <>

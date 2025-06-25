@@ -1,29 +1,41 @@
 @import "tailwindcss";
 @import "tailwind-scrollbar-hide/v4";
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-
 }
 input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 1000px #7932ac inset;
-  -webkit-text-fill-color: #FFD700;
+  -webkit-text-fill-color: #ffd700;
   transition: background-color 5000s ease-in-out 0s;
 }
 
 .shimmer {
-	animation: shimmer 2s infinite linear;
-	background: linear-gradient(to right, #2c2c2c 4%, #333 25%, #2c2c2c 36%);
-	background-size: 1000px 100%;
+  animation: shimmer 2s infinite linear;
+  background: linear-gradient(to right, #2c2c2c 4%, #333 25%, #2c2c2c 36%);
+  background-size: 1000px 100%;
+}
+.custom-select__menu-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-select__menu-list::-webkit-scrollbar-track {
+  background: #1a0011;
+}
+
+.custom-select__menu-list::-webkit-scrollbar-thumb {
+  background-color: #660044;
+  border-radius: 4px;
 }
 
 @keyframes shimmer {
-	0% {
-		background-position: -1000px 0;
-	}
-	100% {
-		background-position: 1000px 0;
-	}
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
 }

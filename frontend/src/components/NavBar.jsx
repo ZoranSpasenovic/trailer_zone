@@ -52,6 +52,9 @@ const NavBar = () => {
       </div>
       <nav className="mr-12 flex items-center justify-between">
         <ul className="hidden mr-12 md:flex justify-between gap-4">
+          <li className="hover:cursor-pointer hover:text-[#FF8C00]">
+            <Link to="/genre">Search By Genre</Link>
+          </li>
           <li
             onClick={() => {
               setContentType("movie");
