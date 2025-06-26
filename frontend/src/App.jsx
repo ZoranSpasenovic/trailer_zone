@@ -8,7 +8,7 @@ import { Toaster } from "react-hot-toast";
 import SearchPage from "./pages/search/SearchPage";
 import HistoryPage from "./pages/history/HistoryPage";
 import NotFound from "./pages/404/NotFound";
-import GenrePage from "./pages/genre/genrePage";
+import GenrePage from "./pages/genre/GenrePage";
 
 const router = createBrowserRouter([
   {
